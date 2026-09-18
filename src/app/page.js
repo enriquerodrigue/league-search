@@ -83,9 +83,24 @@ export default function Page() {
 
                     <p>Summoner level: {player.summoner.summonerLevel}</p>
 
+                    <img
+                        src={`https://opgg-static.akamaized.net/meta/images/profile_icons/profileIcon${player.summoner.profileIconId}.jpg`}
+                        alt="Profile Icon"
+                        width="128"
+                        height="128"
+                    />
+
                     {player.ranked.map((queue) => (
                         <div key={queue.queueType}>
                             <strong>{queue.queueType}</strong>
+
+                            <img
+                                src={`https://opgg-static.akamaized.net/images/medals_new/${queue.tier.toLowerCase()}.png`}
+                                alt={`${queue.tier} ${queue.rank}`}
+                                width="200"
+                                height="200"
+                            />
+
                             <p>
                                 {queue.tier} {queue.rank} — {queue.leaguePoints} LP
                             </p>
