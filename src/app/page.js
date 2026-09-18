@@ -5,6 +5,7 @@ import { useState } from "react";
 export default function Page() {
     const [gameName, setGameName] = useState("");
     const [tagLine, setTagLine] = useState("");
+    const [platform, setPlatform] = useState("na1");
     const [player, setPlayer] = useState(null);
     const [error, setError] = useState("");
     const [loading, setLoading] = useState(false);
@@ -17,7 +18,7 @@ export default function Page() {
 
         try {
             const response = await fetch(
-                `/api/player?gameName=${encodeURIComponent(gameName)}&tagLine=${encodeURIComponent(tagLine)}&platform=na1`,
+                `/api/player?gameName=${encodeURIComponent(gameName)}&tagLine=${encodeURIComponent(tagLine)}&platform=${encodeURIComponent(platform)}`,
             );
 
             const data = await response.json();
@@ -52,6 +53,20 @@ export default function Page() {
                     placeholder="Tag line, e.g. NA1"
                     required
                 />
+
+                <select value={platform} onChange={(event) => setPlatform(event.target.value)}>
+                    <option value="na1">North America</option>
+                    <option value="euw1">Europe West</option>
+                    <option value="eun1">Europe Nordic & East</option>
+                    <option value="kr">Korea</option>
+                    <option value="jp1">Japan</option>
+                    <option value="br1">Brazil</option>
+                    <option value="la1">Latin America 1</option>
+                    <option value="la2">Latin America 2</option>
+                    <option value="oc1">Oceania</option>
+                    <option value="tr1">Turkey</option>
+                    <option value="ru">Russia</option>
+                </select>
 
                 <button type="submit" disabled={loading}>
                     {loading ? "Searching..." : "Search"}

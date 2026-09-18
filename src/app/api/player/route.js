@@ -12,13 +12,20 @@ const platformRegions = {
     euw1: "https://euw1.api.riotgames.com",
     eun1: "https://eun1.api.riotgames.com",
     kr: "https://kr.api.riotgames.com",
+    jp1: "https://jp1.api.riotgames.com",
+    br1: "https://br1.api.riotgames.com",
+    la1: "https://la1.api.riotgames.com",
+    la2: "https://la2.api.riotgames.com",
+    oc1: "https://oc1.api.riotgames.com",
+    tr1: "https://tr1.api.riotgames.com",
+    ru: "https://ru.api.riotgames.com",
 };
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const gameName = searchParams.get("gameName");
     const tagLine = searchParams.get("tagLine");
-    const platform = searchParams.get("platform") || "na1";
+    const platform = searchParams.get("platform");
 
     if (!gameName || !tagLine || !platformRegions[platform]) {
         return NextResponse.json(
